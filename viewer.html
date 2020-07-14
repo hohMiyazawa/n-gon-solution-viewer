@@ -215,12 +215,144 @@ function generate_quadratic_snake(n){
 	if(n % 4 === 0){
 	}
 	else if(n % 4 === 3){
-		let k = Math.floor((n + 15)/20);
+		let k = Math.floor((n - 15)/20);
 
 		let numbers = [];
 		for(let i=1;i<=n;i++){
 			numbers.push(i)
 		}
+	
+		let removeNumber = function(num){
+			numbers.splice(numbers.findIndex(e => e === num),1)
+		}
+		removeNumber(1);
+		removeNumber(2);
+		removeNumber(5);
+		removeNumber(10);
+		removeNumber(15);
+
+		for(let i=1;i<=k;i++){
+			removeNumber(5*i - 1);
+			removeNumber(5*i + 1);
+			removeNumber(5*i - 2);
+			removeNumber(5*i + 2);
+			removeNumber(20*i);
+			removeNumber(20*i + 5);
+			removeNumber(20*i + 10);
+			removeNumber(20*i + 15);
+		}
+
+		let tail1 = 5*k + 3;
+		let tail2 = 5*k + 4;
+		removeNumber(tail1);
+		removeNumber(tail2);
+
+		let bodyPairs = [];
+		for(let i=0;i<numbers.length;i+=4){
+			bodyPairs.push([numbers[i],numbers[i + 2]]);
+			bodyPairs.push([numbers[i + 1],numbers[i + 3]]);
+		}
+		let repeatingPairs = bodyPairs.splice(0,2*k);
+		
+		let vertices = [
+			{x:0,y:0},
+			{x:2,y:0},
+			{x:11,y:12}
+		];
+		let addVertice = function(x,y){
+			vertices.push({
+				x: vertices[vertices.length - 1].x + x,
+				y: vertices[vertices.length - 1].y + y
+			})
+		}
+		for(let i=1;i<=k;i++){
+			addVertice(0,5*i - 1);
+			addVertice(repeatingPairs[2*i - 2][0],0);
+			addVertice(0,-repeatingPairs[2*i - 1][0]);
+			addVertice(
+				3*(20*i + 5)/5,
+				-4*(20*i + 5)/5
+			);
+			addVertice(5*i - 2,0);
+			addVertice(
+				3*(20*i + 15)/5,
+				4*(20*i + 15)/5
+			);
+		}
+
+		let direction = 0;
+		bodyPairs = bodyPairs.reverse();
+		for(let i=0;i<bodyPairs.length;i++){
+			if(direction % 4 === 0){
+				addVertice(0,bodyPairs[i][0]);
+			}
+			else if(direction % 4 === 1){
+				addVertice(bodyPairs[i][0],0);
+			}
+			else if(direction % 4 === 2){
+				addVertice(0,-bodyPairs[i][0]);
+			}
+			else if(direction % 4 === 3){
+				addVertice(-bodyPairs[i][0],0);
+			}
+			direction++
+		}
+		if(direction % 4 === 1){
+			addVertice(tail1,0);
+			addVertice(0,1);
+			addVertice(-tail2,0);
+		}
+		else if(direction % 4 === 2){
+			addVertice(0,-tail1);
+			addVertice(1,0);
+			addVertice(0,tail2);
+		}
+		else if(direction % 4 === 3){
+			addVertice(-tail1,0);
+			addVertice(0,-1);
+			addVertice(tail2,0);
+		}
+		else if(direction % 4 === 0){
+			addVertice(0,tail1);
+			addVertice(-1,0);
+			addVertice(0,-tail2);
+		}
+		bodyPairs = bodyPairs.reverse();
+		for(let i=0;i<bodyPairs.length;i++){
+			if(direction % 4 === 0){
+				addVertice(bodyPairs[i][1],0);
+			}
+			else if(direction % 4 === 1){
+				addVertice(0,bodyPairs[i][1]);
+			}
+			else if(direction % 4 === 2){
+				addVertice(-bodyPairs[i][1],0);
+			}
+			else if(direction % 4 === 3){
+				addVertice(0,-bodyPairs[i][1]);
+			}
+			direction++
+		}
+
+		for(let i=k;i>0;i--){
+			addVertice(
+				-3*(20*i + 10)/5,
+				-4*(20*i + 10)/5
+			);
+			addVertice(-5*i - 2,0);
+			addVertice(
+				-3*(20*i)/5,
+				4*(20*i)/5
+			);
+			addVertice(0,repeatingPairs[2*i - 1][1]);
+			addVertice(-repeatingPairs[2*i - 2][1],0);
+			addVertice(0,-5*i - 1);
+		}
+		vertices.push({x:4,y:3})
+
+		vertices.push({x:0,y:0})
+
+		return vertices;
 	}
 	else{
 		throw "invalid input for generate_quadratic_snake"
@@ -241,6 +373,9 @@ function updateGraphics(){
 			smallestComment.innerText = "Area = " + solutions[input.value].minimum
 		}
 		else{
+			let generatedSolution = generate_quadratic_snake(parseInt(input.value));
+			draw_n_gon(generatedSolution,smallest_canvas);
+			smallestComment.innerText = "Area = " + polygon_area(generatedSolution)
 		}
 		if(solutions[input.value].maximum_vertices){
 			draw_n_gon(solutions[input.value].maximum_vertices,largest_canvas);
@@ -252,6 +387,12 @@ function updateGraphics(){
 	else if(parseInt(input.value) % 4 !== 0 && parseInt(input.value) % 4 !== 3){
 		smallestComment.innerText = "no solutions"
 		largestComment.innerText = "no solutions"
+	}
+	else{
+		let generatedSolution = generate_quadratic_snake(parseInt(input.value));
+		draw_n_gon(generatedSolution,smallest_canvas);
+		smallestComment.innerText = "Area = " + polygon_area(generatedSolution);
+		largestComment.innerText = "no generated solution"
 	}
 }
 
