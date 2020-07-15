@@ -213,6 +213,164 @@ function polygon_area(vertices){
 
 function generate_quadratic_snake(n){
 	if(n % 4 === 0){
+		let k = Math.floor((n - 20)/20);
+		let numbers = [];
+		for(let i=1;i<=n;i++){
+			numbers.push(i)
+		}
+	
+		let removeNumber = function(num){
+			numbers.splice(numbers.findIndex(e => e === num),1)
+		}
+		removeNumber(1);
+		removeNumber(2);
+		removeNumber(3);
+		removeNumber(4);
+		removeNumber(5);
+		removeNumber(6);
+		removeNumber(7);
+		removeNumber(8);
+		removeNumber(9);
+		removeNumber(10);
+		removeNumber(11);
+		removeNumber(12);
+		removeNumber(15);
+		removeNumber(20);
+
+		for(let i=1;i<=k;i++){
+			removeNumber(5*i + 8);
+			removeNumber(5*i + 9);
+			removeNumber(5*i + 11);
+			removeNumber(5*i + 12);
+			removeNumber(20*i + 5);
+			removeNumber(20*i + 10);
+			removeNumber(20*i + 15);
+			removeNumber(20*i + 20);
+		}
+
+		let tail1 = 5*k + 13;
+		let tail2 = 5*k + 14;
+		removeNumber(tail1);
+		removeNumber(tail2);
+
+		let bodyPairs = [];
+		for(let i=0;i<numbers.length;i+=4){
+			bodyPairs.push([numbers[i],numbers[i + 2]]);
+			bodyPairs.push([numbers[i + 1],numbers[i + 3]]);
+		}
+		bodyPairs = bodyPairs.reverse();
+		let repeatingPairs = bodyPairs.splice(0,2*k);
+		repeatingPairs = repeatingPairs.reverse();
+
+
+		let vertices = [
+			{x:0,y:0},
+			{x:0,y:9},
+			{x:10,y:9},
+			{x:10,y:5},
+			{x:8,y:5},
+			{x:24,y:-7},
+			{x:24,y:-1},
+			{x:27,y:-1},
+			{x:23,y:2},
+			{x:23,y:-6},
+			{x:11,y:3},
+			{x:11,y:10},
+			{x:-1,y:10},
+			{x:-1,y:-1}
+		];
+
+		let addVertice = function(x,y){
+			vertices.push({
+				x: vertices[vertices.length - 1].x + x,
+				y: vertices[vertices.length - 1].y + y
+			})
+		}
+		for(let i=1;i<=k;i++){
+			addVertice(
+				-3*(20*i + 15)/5,
+				-4*(20*i + 15)/5
+			);
+			addVertice(-5*i - 12,0);
+			addVertice(
+				-3*(20*i + 5)/5,
+				4*(20*i + 5)/5
+			);
+			addVertice(0,5*i + 11);
+			if(i === k){
+				bodyPairs.push(repeatingPairs[2*k - 2])
+				bodyPairs.push(repeatingPairs[2*k - 1])
+				bodyPairs.sort((b,a) => a[0] - b[0])
+			}
+			else{
+				addVertice(-repeatingPairs[2*i - 2][1],0);
+				addVertice(0,-repeatingPairs[2*i - 1][1]);
+			}
+		}
+
+		let direction = 2;
+		for(let i=0;i<bodyPairs.length;i++){
+			if(direction % 4 === 0){
+				addVertice(bodyPairs[i][1],0);
+			}
+			else if(direction % 4 === 1){
+				addVertice(0,bodyPairs[i][1]);
+			}
+			else if(direction % 4 === 2){
+				addVertice(-bodyPairs[i][1],0);
+			}
+			else if(direction % 4 === 3){
+				addVertice(0,-bodyPairs[i][1]);
+			}
+			direction++
+		}
+		if(direction % 4 === 2){
+			addVertice(-tail2,0);
+			addVertice(0,-1);
+			addVertice(tail1,0);
+		}
+		else if(direction % 4 === 0){
+			addVertice(tail2,0);
+			addVertice(0,1);
+			addVertice(-tail1,0);
+		}
+		bodyPairs = bodyPairs.reverse();
+		for(let i=0;i<bodyPairs.length;i++){
+			if(direction % 4 === 0){
+				addVertice(0,bodyPairs[i][0]);
+			}
+			else if(direction % 4 === 1){
+				addVertice(bodyPairs[i][0],0);
+			}
+			else if(direction % 4 === 2){
+				addVertice(0,-bodyPairs[i][0]);
+			}
+			else if(direction % 4 === 3){
+				addVertice(-bodyPairs[i][0],0);
+			}
+			direction++
+		}
+
+		for(let i=k;i>0;i--){
+			if(i !== k){
+				addVertice(0,repeatingPairs[2*i - 1][0]);
+				addVertice(repeatingPairs[2*i - 2][0],0);
+			}
+			addVertice(0,-5*i - 9);
+			addVertice(
+				3*(20*i + 10)/5,
+				-4*(20*i + 10)/5
+			);
+			addVertice(5*i + 8,0);
+			addVertice(
+				3*(20*i + 20)/5,
+				4*(20*i + 20)/5
+			);
+		}
+
+
+		return vertices;
+
 	}
 	else if(n % 4 === 3){
 		let k = Math.floor((n - 15)/20);
@@ -390,9 +548,13 @@ function updateGraphics(){
 	}
 	else{
 		let generatedSolution = generate_quadratic_snake(parseInt(input.value));
-		draw_n_gon(generatedSolution,smallest_canvas);
-		smallestComment.innerText = "Area = " + polygon_area(generatedSolution);
-		largestComment.innerText = "no generated solution"
+		if(generatedSolution){
+			draw_n_gon(generatedSolution,smallest_canvas);
+			smallestComment.innerText = "Area = " + polygon_area(generatedSolution);
+		}
+		else{
+			smallestComment.innerText = "No generator implemented yet";
+		}
 	}
 }
 
