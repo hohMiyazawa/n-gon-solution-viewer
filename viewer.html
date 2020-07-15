@@ -198,7 +198,7 @@ function draw_n_gon(vertices,canvas){
 	canvas.closePath();
 	canvas.stroke()
 	canvas.fill();
-	if(vertices.length < 400){
+	if(vertices.length < 40){
 		canvas.fillStyle = "black";
 		for(let i=1;i<vertices.length;i++){
 			canvas.fillText(
@@ -649,6 +649,48 @@ function generate_big_square(n){
 		}
 		addVertice(0,-6);
 		addVertice(1,0);
+
+		return vertices
+	}
+	else if(n % 8 === 3){
+		let k = (n - 11)/8;
+		let vertices = [
+			{x:0,y:0}
+		];
+		let addVertice = function(x,y){
+			vertices.push({
+				x: vertices[vertices.length - 1].x + x,
+				y: vertices[vertices.length - 1].y + y
+			})
+		}
+
+		for(let i=1;i<=k;i++){
+			addVertice(0,-(8*(k - i + 1) + 11));//8
+			addVertice(8*i - 1 + 11,0);
+		}
+		addVertice(0,-4);
+		addVertice(9,0);
+		for(let i=1;i<=k;i++){
+			addVertice(0,8*i - 4 + 11);//4
+			addVertice(8*(k - i + 1) - 7 + 11,0);
+		}
+		addVertice(4,3);
+		addVertice(3,0);
+		for(let i=1;i<=k;i++){
+			addVertice(0,8*(k - i + 1) - 2 + 11);//6
+			addVertice(-(8*i - 3 + 11),0);
+		}
+		addVertice(0,7);
+		addVertice(-6,8);
+		for(let i=1;i<=k;i++){
+			addVertice(0,-(8*i - 6 + 11));//2
+			addVertice(-(8*(k - i + 1) - 5 + 11),0);
+		}
+		addVertice(-11,0);
+		addVertice(0,-6);
+		addVertice(-1,0);
+		addVertice(0,-8);
+		addVertice(2,0);
 
 		return vertices
 	}
