@@ -517,14 +517,71 @@ function generate_quadratic_snake(n){
 	}
 }
 
+function generate_big_square(n){
+	if(n % 8 === 0){
+		let k = n/8;
+		let vertices = [
+			{x:0,y:0}
+		];
+		let addVertice = function(x,y){
+			vertices.push({
+				x: vertices[vertices.length - 1].x + x,
+				y: vertices[vertices.length - 1].y + y
+			})
+		}
+		
+		for(let i=1;i<=k;i++){
+			addVertice(0,-8*i);//8
+			addVertice(8*i - 1,0);
+		}
+		for(let i=1;i<=k;i++){
+			addVertice(0,8*i - 4);//4
+			addVertice(8*i - 7,0);
+		}
+		for(let i=1;i<=k;i++){
+			addVertice(0,8*i - 2);//6
+			addVertice(-(8*i - 3),0);
+		}
+		for(let i=1;i<=k;i++){
+			addVertice(0,-(8*i - 6));//2
+			addVertice(-(8*i - 5),0);
+		}
+
+		return vertices
+	}
+	else if(n % 4 === 0){
+	}
+	else if(n % 4 === 3){
+	}
+	else{
+		throw "invalid input for generate_big_square"
+	}
+}
+
 let input = document.getElementById("input_n");
 
 let smallestComment = document.getElementById("smallestComment");
 let largestComment = document.getElementById("largestComment");
 
+let previousValue = null;
+
 function updateGraphics(){
-	smallest_canvas.clearRect(0,0,smallest_canvas.canvas.width,smallest_canvas.canvas.height)
-	largest_canvas.clearRect(0,0,largest_canvas.canvas.width,largest_canvas.canvas.height)
+	if(parseInt(input.value) % 4 === 1){
+		let newValue = parseInt(input.value) - 1;
+		if(newValue === previousValue){
+			newValue = newValue + 3
+		}
+		input.value = newValue
+	}
+	else if(parseInt(input.value) % 4 === 2){
+		let newValue = parseInt(input.value) + 1;
+		if(newValue === previousValue){
+			newValue = newValue - 3
+		}
+		input.value = newValue
+	}
+	smallest_canvas.clearRect(0,0,smallest_canvas.canvas.width,smallest_canvas.canvas.height);
+	largest_canvas.clearRect(0,0,largest_canvas.canvas.width,largest_canvas.canvas.height);
 	if(solutions[input.value]){
 		if(solutions[input.value].minimum_vertices){
 			draw_n_gon(solutions[input.value].minimum_vertices,smallest_canvas);
@@ -540,11 +597,10 @@ function updateGraphics(){
 			largestComment.innerText = "Area = " + solutions[input.value].maximum
 		}
 		else{
+			let generatedSolution = generate_big_square(parseInt(input.value));
+			draw_n_gon(generatedSolution,largest_canvas);
+			largestComment.innerText = "Area = " + polygon_area(generatedSolution)
 		}
-	}
-	else if(parseInt(input.value) % 4 !== 0 && parseInt(input.value) % 4 !== 3){
-		smallestComment.innerText = "no solutions"
-		largestComment.innerText = "no solutions"
 	}
 	else{
 		let generatedSolution = generate_quadratic_snake(parseInt(input.value));
@@ -555,7 +611,16 @@ function updateGraphics(){
 		else{
 			smallestComment.innerText = "No generator implemented yet";
 		}
+		let generatedSolution2 = generate_big_square(parseInt(input.value));
+		if(generatedSolution2){
+			draw_n_gon(generatedSolution2,largest_canvas);
+			largestComment.innerText = "Area = " + polygon_area(generatedSolution2);
+		}
+		else{
+			largestComment.innerText = "No generator implemented yet";
+		}
 	}
+	previousValue = parseInt(input.value)
 }
 
 input.onchange = updateGraphics
