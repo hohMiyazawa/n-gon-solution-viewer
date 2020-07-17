@@ -42,14 +42,18 @@ const solutions = {
 	7: {
 		minimum: 14,
 		minimum_vertices: [{"x":0,"y":0},{"x":7,"y":0},{"x":7,"y":-2},{"x":10,"y":-2},{"x":6,"y":-5},{"x":6,"y":-1},{"x":0,"y":-1},{"x":0,"y":0}],
+		minimum_proven: true,
 		maximum: 48,
-		maximum_vertices: [{"x":0,"y":0},{"x":7,"y":0},{"x":7,"y":-4},{"x":4,"y":-8},{"x":1,"y":-8},{"x":1,"y":-6},{"x":0,"y":-6},{"x":0,"y":0}]
+		maximum_vertices: [{"x":0,"y":0},{"x":7,"y":0},{"x":7,"y":-4},{"x":4,"y":-8},{"x":1,"y":-8},{"x":1,"y":-6},{"x":0,"y":-6},{"x":0,"y":0}],
+		maximum_proven: true
 	},
 	8: {
 		minimum: 16,
 		minimum_vertices: [{"x":0,"y":0},{"x":8,"y":0},{"x":8,"y":-6},{"x":10,"y":-6},{"x":10,"y":-9},{"x":7,"y":-5},{"x":7,"y":-1},{"x":0,"y":-1},{"x":0,"y":0}],
+		minimum_proven: true,
 		maximum: 75,
-		maximum_vertices: [{"x":0,"y":0},{"x":8,"y":0},{"x":8,"y":4},{"x":5,"y":8},{"x":5,"y":10},{"x":-1,"y":10},{"x":-1,"y":3},{"x":0,"y":3},{"x":0,"y":0}]
+		maximum_vertices: [{"x":0,"y":0},{"x":8,"y":0},{"x":8,"y":4},{"x":5,"y":8},{"x":5,"y":10},{"x":-1,"y":10},{"x":-1,"y":3},{"x":0,"y":3},{"x":0,"y":0}],
+		maximum_proven: true
 	},
 	11: {
 		minimum: 27,
@@ -90,8 +94,8 @@ const solutions = {
 	23: {
 		minimum: 127,
 		minimum_vertices: [{"x":0,"y":0},{"x":-6,"y":-8},{"x":-10,"y":-11},{"x":-8,"y":-11},{"x":1,"y":1},{"x":1,"y":22},{"x":21,"y":22},{"x":21,"y":5},{"x":5,"y":5},{"x":5,"y":17},{"x":16,"y":17},{"x":16,"y":11},{"x":9,"y":11},{"x":9,"y":14},{"x":8,"y":14},{"x":8,"y":10},{"x":17,"y":10},{"x":17,"y":18},{"x":4,"y":18},{"x":4,"y":4},{"x":22,"y":4},{"x":22,"y":23},{"x":0,"y":23},{"x":0,"y":0}],
-		maximum: 4648,
-		maximum_vertices: [{"x":0,"y":0},{"x":12,"y":0},{"x":12,"y":-6},{"x":35,"y":-6},{"x":43,"y":0},{"x":51,"y":0},{"x":54,"y":4},{"x":57,"y":4},{"x":57,"y":11},{"x":73,"y":23},{"x":73,"y":45},{"x":65,"y":60},{"x":65,"y":69},{"x":47,"y":69},{"x":47,"y":68},{"x":31,"y":68},{"x":31,"y":64},{"x":17,"y":64},{"x":8,"y":52},{"x":-3,"y":52},{"x":-3,"y":33},{"x":-5,"y":33},{"x":-5,"y":12},{"x":0,"y":0}]
+		maximum: 4753,
+		maximum_vertices: [{"x":0,"y":0},{"x":12,"y":0},{"x":12,"y":-6},{"x":35,"y":-6},{"x":43,"y":0},{"x":51,"y":0},{"x":67,"y":12},{"x":70,"y":12},{"x":70,"y":21},{"x":73,"y":25},{"x":73,"y":47},{"x":65,"y":62},{"x":65,"y":69},{"x":47,"y":69},{"x":47,"y":68},{"x":31,"y":68},{"x":31,"y":64},{"x":17,"y":64},{"x":8,"y":52},{"x":-3,"y":52},{"x":-3,"y":33},{"x":-5,"y":33},{"x":-5,"y":12},{"x":0,"y":0}]
 	},
 	24: {
 		minimum: 137,
@@ -150,6 +154,10 @@ const solutions = {
 	44: {
 		maximum: 39388,
 		maximum_vertices: [{"x":0,"y":0},{"x":24,"y":0},{"x":24,"y":40},{"x":52,"y":61},{"x":96,"y":61},{"x":108,"y":77},{"x":109,"y":77},{"x":124,"y":69},{"x":124,"y":33},{"x":133,"y":33},{"x":133,"y":2},{"x":136,"y":2},{"x":136,"y":-14},{"x":138,"y":-14},{"x":138,"y":-33},{"x":172,"y":-33},{"x":172,"y":-66},{"x":194,"y":-66},{"x":194,"y":-107},{"x":217,"y":-107},{"x":217,"y":-121},{"x":178,"y":-121},{"x":178,"y":-163},{"x":157,"y":-163},{"x":157,"y":-159},{"x":169,"y":-159},{"x":169,"y":-152},{"x":159,"y":-152},{"x":139,"y":-173},{"x":96,"y":-173},{"x":92,"y":-170},{"x":65,"y":-170},{"x":60,"y":-158},{"x":23,"y":-158},{"x":23,"y":-150},{"x":-1,"y":-140},{"x":-19,"y":-140},{"x":-31,"y":-131},{"x":-31,"y":-103},{"x":-38,"y":-79},{"x":-38,"y":-41},{"x":-32,"y":-41},{"x":-32,"y":-11},{"x":0,"y":-11},{"x":0,"y":0}]
+	},
+	80: {
+		maximum: 584500,
+		maximum_vertices: [{"x":0,"y":0},{"x":0,"y":-77},{"x":3,"y":-77},{"x":3,"y":-153},{"x":7,"y":-153},{"x":43,"y":-180},{"x":43,"y":-222},{"x":81,"y":-222},{"x":81,"y":-263},{"x":120,"y":-263},{"x":124,"y":-266},{"x":124,"y":-303},{"x":167,"y":-303},{"x":167,"y":-339},{"x":211,"y":-339},{"x":275,"y":-387},{"x":275,"y":-389},{"x":353,"y":-389},{"x":353,"y":-390},{"x":432,"y":-390},{"x":464,"y":-414},{"x":536,"y":-414},{"x":536,"y":-406},{"x":607,"y":-406},{"x":607,"y":-397},{"x":637,"y":-357},{"x":684,"y":-357},{"x":684,"y":-324},{"x":730,"y":-324},{"x":730,"y":-290},{"x":736,"y":-282},{"x":768,"y":-282},{"x":768,"y":-234},{"x":799,"y":-234},{"x":799,"y":-185},{"x":844,"y":-125},{"x":851,"y":-125},{"x":851,"y":-52},{"x":857,"y":-52},{"x":857,"y":22},{"x":878,"y":50},{"x":878,"y":117},{"x":865,"y":117},{"x":865,"y":183},{"x":851,"y":183},{"x":807,"y":216},{"x":807,"y":268},{"x":779,"y":268},{"x":779,"y":319},{"x":750,"y":319},{"x":738,"y":328},{"x":738,"y":355},{"x":685,"y":355},{"x":685,"y":381},{"x":631,"y":381},{"x":575,"y":423},{"x":575,"y":435},{"x":507,"y":435},{"x":507,"y":446},{"x":438,"y":446},{"x":414,"y":464},{"x":352,"y":464},{"x":352,"y":446},{"x":291,"y":446},{"x":291,"y":427},{"x":255,"y":379},{"x":198,"y":379},{"x":198,"y":356},{"x":142,"y":356},{"x":142,"y":332},{"x":130,"y":316},{"x":108,"y":316},{"x":108,"y":258},{"x":87,"y":258},{"x":87,"y":199},{"x":48,"y":147},{"x":31,"y":147},{"x":31,"y":84},{"x":15,"y":84},{"x":15,"y":20},{"x":0,"y":0}]
 	}
 /*
 	23: {
@@ -224,6 +232,43 @@ function draw_n_gon(vertices,canvas){
 		smallest_canvas.fillStyle = "azure";
 		largest_canvas.fillStyle = "coral";
 	}
+}
+
+function gcd(a,b){
+	if(!b){
+		return a
+	}
+	return gcd(b, a % b);
+}
+
+function lower_bound(n){
+	let sum = 0;
+	for(let i=1;i<=n;i++){
+		let bestCD = i;
+		for(let j=1;j<Math.sqrt(i);j++){
+			for(let k=1;k<j;k++){
+				let squareSum = j*j + k*k;
+				if(squareSum > i){
+					break
+				}
+				if(i % squareSum === 0){
+					bestCD = Math.min(
+						bestCD,
+						gcd(
+							j*j - k*k,
+							2*j*k
+						)*i/squareSum
+					)
+				}
+			}
+		}
+		sum += bestCD;
+	}
+	return Math.floor(sum/2 - 1)
+}
+
+function upper_bound(n){
+	return Math.floor(Math.pow(n*(n+1)/2,2)/(4*Math.PI))
 }
 
 function polygon_area(vertices){
@@ -584,6 +629,7 @@ function generate_big_square2(n){
 		}
 		vertLegs.sort((a,b) => a - b);
 		horiLegs.sort((b,a) => a - b);
+		dias.sort((b,a) => a - b);
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(0,-vertLegs.pop());
@@ -593,6 +639,9 @@ function generate_big_square2(n){
 
 			let diaLength = dias.pop();
 			addVertice(diaLength * 4/5,-diaLength * 3/5);
+			if(i === k){
+				dias = dias.reverse()
+			}
 		}
 
 		for(let i=1;i<=k;i++){
@@ -613,6 +662,7 @@ function generate_big_square2(n){
 		}
 		vertLegs.sort((b,a) => a - b);
 		horiLegs.sort((a,b) => a - b);
+		dias.sort((b,a) => a - b);
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(horiLegs.pop(),0);
@@ -623,6 +673,9 @@ function generate_big_square2(n){
 			let diaLength = dias.pop();
 			
 			addVertice(diaLength * 3/5,diaLength * 4/5);
+			if(i === k){
+				dias = dias.reverse()
+			}
 		}
 
 		for(let i=1;i<=k;i++){
@@ -643,6 +696,7 @@ function generate_big_square2(n){
 		}
 		vertLegs.sort((a,b) => a - b);
 		horiLegs.sort((b,a) => a - b);
+		dias.sort((b,a) => a - b);
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(0,vertLegs.pop());
@@ -652,6 +706,9 @@ function generate_big_square2(n){
 
 			let diaLength = dias.pop();
 			addVertice(-diaLength * 4/5,diaLength * 3/5);
+			if(i === k){
+				dias = dias.reverse()
+			}
 		}
 
 		for(let i=1;i<=k;i++){
@@ -672,6 +729,7 @@ function generate_big_square2(n){
 		}
 		vertLegs.sort((b,a) => a - b);
 		horiLegs.sort((a,b) => a - b);
+		dias.sort((b,a) => a - b);
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(-horiLegs.pop(),0);
@@ -682,6 +740,9 @@ function generate_big_square2(n){
 			let diaLength = dias.pop();
 			
 			addVertice(-diaLength * 3/5,-diaLength * 4/5);
+			if(i === k){
+				dias = dias.reverse()
+			}
 		}
 
 		return vertices
@@ -886,28 +947,59 @@ function updateGraphics(){
 	if(solutions[input.value]){
 		if(solutions[input.value].minimum_vertices){
 			draw_n_gon(solutions[input.value].minimum_vertices,smallest_canvas);
-			smallestComment.innerText = "Area = " + solutions[input.value].minimum
+			if(solutions[input.value].minimum_proven){
+				smallestComment.innerText = `
+Area = ${solutions[input.value].minimum}
+Proven optimal
+`
+			}
+			else{
+				smallestComment.innerText = `
+Area = ${solutions[input.value].minimum}
+Lower bound >= ${lower_bound(parseInt(input.value))}
+`
+			}
 		}
 		else{
 			let generatedSolution = generate_quadratic_snake(parseInt(input.value));
 			draw_n_gon(generatedSolution,smallest_canvas);
-			smallestComment.innerText = "Area = " + polygon_area(generatedSolution)
+			smallestComment.innerText = `
+Area = ${polygon_area(generatedSolution)}
+Lower bound >= ${lower_bound(parseInt(input.value))}
+`
 		}
 		if(solutions[input.value].maximum_vertices){
 			draw_n_gon(solutions[input.value].maximum_vertices,largest_canvas);
-			largestComment.innerText = "Area = " + solutions[input.value].maximum
+			if(solutions[input.value].maximum_proven){
+				largestComment.innerText = `
+Area = ${solutions[input.value].maximum}
+Proven optimal
+`
+			}
+			else{
+				largestComment.innerText = `
+Area = ${solutions[input.value].maximum}
+Upper bound < ${upper_bound(parseInt(input.value))}
+`
+			}
 		}
 		else{
 			let generatedSolution = generate_big_square(parseInt(input.value));
 			draw_n_gon(generatedSolution,largest_canvas);
-			largestComment.innerText = "Area = " + polygon_area(generatedSolution)
+			largestComment.innerText = `
+Area = ${polygon_area(generatedSolution)}
+Upper bound < ${upper_bound(parseInt(input.value))}
+`
 		}
 	}
 	else{
 		let generatedSolution = generate_quadratic_snake(parseInt(input.value));
 		if(generatedSolution){
 			draw_n_gon(generatedSolution,smallest_canvas);
-			smallestComment.innerText = "Area = " + polygon_area(generatedSolution);
+			smallestComment.innerText = `
+Area = ${polygon_area(generatedSolution)}
+Lower bound >= ${lower_bound(parseInt(input.value))}
+`
 		}
 		else{
 			smallestComment.innerText = "No generator implemented yet";
@@ -915,7 +1007,10 @@ function updateGraphics(){
 		let generatedSolution2 = generate_big_square(parseInt(input.value));
 		if(generatedSolution2){
 			draw_n_gon(generatedSolution2,largest_canvas);
-			largestComment.innerText = "Area = " + polygon_area(generatedSolution2);
+			largestComment.innerText = `
+Area = ${polygon_area(generatedSolution2)}
+Upper bound < ${upper_bound(parseInt(input.value))}
+`
 		}
 		else{
 			largestComment.innerText = "No generator implemented yet";
