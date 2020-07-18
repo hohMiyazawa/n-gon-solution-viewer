@@ -591,8 +591,9 @@ function generate_quadratic_snake(n){
 }
 
 function generate_big_square2(n){
-	if(n % 40 === 0){
-		let k = n/40;
+	let rest = n % 40;
+	if(rest === 0 || rest === 7){
+		let k = (n - rest)/40;
 		let vertices = [
 			{x:0,y:0}
 		];
@@ -608,20 +609,38 @@ function generate_big_square2(n){
 		let dias = [];
 		
 		for(let i=1;i<=k;i++){
-			vertLegs.push(40*i - 4);
-			horiLegs.push(40*i - 2);
-			vertLegs.push(40*i - 3);
-			horiLegs.push(40*i - 1);
-
-			dias.push(40*i);
+			let vertical = true;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		for(let i=1;i<=k;i++){
-			vertLegs.push(40*i - 39);
-			horiLegs.push(40*i - 37);
-			vertLegs.push(40*i - 38);
-			horiLegs.push(40*i - 36);
-
-			dias.push(40*i - 35);
+			let vertical = true;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 35;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		vertLegs.sort((a,b) => a - b);
 		horiLegs.sort((b,a) => a - b);
@@ -649,24 +668,46 @@ function generate_big_square2(n){
 		}
 
 		for(let i=1;i<=k;i++){
-			horiLegs.push(40*i- 9);
-			vertLegs.push(40*i - 7);
-			horiLegs.push(40*i - 8);
-			vertLegs.push(40*i - 6);
-
-			dias.push(40*i - 5);
+			let vertical = false;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 5;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		for(let i=1;i<=k;i++){
-			horiLegs.push(40*i - 34);
-			vertLegs.push(40*i - 32);
-			horiLegs.push(40*i - 33);
-			vertLegs.push(40*i - 31);
-
-			dias.push(40*i - 30);
+			let vertical = false;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 30;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		vertLegs.sort((b,a) => a - b);
 		horiLegs.sort((a,b) => a - b);
 		dias.sort((b,a) => a - b);
+
+		if(rest === 7){
+			addVertice(0,-2);
+		}
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(horiLegs.pop(),0);
@@ -690,24 +731,47 @@ function generate_big_square2(n){
 		}
 
 		for(let i=1;i<=k;i++){
-			vertLegs.push(40*i - 14);
-			horiLegs.push(40*i - 12);
-			vertLegs.push(40*i - 13);
-			horiLegs.push(40*i - 11);
-
-			dias.push(40*i - 10);
+			let vertical = true;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 10;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		for(let i=1;i<=k;i++){
-			vertLegs.push(40*i - 29);
-			horiLegs.push(40*i - 27);
-			vertLegs.push(40*i - 28);
-			horiLegs.push(40*i - 26);
-
-			dias.push(40*i - 25);
+			let vertical = true;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 25;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		vertLegs.sort((a,b) => a - b);
 		horiLegs.sort((b,a) => a - b);
 		dias.sort((b,a) => a - b);
+
+		if(rest === 7){
+			addVertice(3,0);
+			addVertice(3,4);
+		}
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(0,vertLegs.pop());
@@ -730,24 +794,48 @@ function generate_big_square2(n){
 		}
 
 		for(let i=1;i<=k;i++){
-			horiLegs.push(40*i- 19);
-			vertLegs.push(40*i - 17);
-			horiLegs.push(40*i - 18);
-			vertLegs.push(40*i - 16);
-
-			dias.push(40*i - 15);
+			let vertical = false;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 15;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		for(let i=1;i<=k;i++){
-			horiLegs.push(40*i - 24);
-			vertLegs.push(40*i - 22);
-			horiLegs.push(40*i - 23);
-			vertLegs.push(40*i - 21);
-
-			dias.push(40*i - 20);
+			let vertical = false;
+			for(let j=0;j<5;j++){
+				let lengthy = 40*i + rest - j - 20;
+				if(lengthy % 5 === 0){
+					dias.push(lengthy);
+					continue
+				}
+				if(vertical){
+					vertLegs.push(lengthy);
+				}
+				else{
+					horiLegs.push(lengthy);
+				}
+				vertical = !vertical
+			}
 		}
 		vertLegs.sort((b,a) => a - b);
 		horiLegs.sort((a,b) => a - b);
 		dias.sort((b,a) => a - b);
+
+		if(rest === 7){
+			addVertice(0,4);
+			addVertice(-7,0);
+			addVertice(0,6);
+		}
 
 		for(let i=1;i<=2*k;i++){
 			addVertice(-horiLegs.pop(),0);
@@ -768,6 +856,10 @@ function generate_big_square2(n){
 			if(i < 2*k){
 				addVertice(0,-vertLegs.pop());
 			}
+		}
+
+		if(rest === 7){
+			addVertice(1,0);
 		}
 
 		return vertices
@@ -895,6 +987,13 @@ function generate_big_square(n){
 		}
 		addVertice(0,-6);
 		addVertice(1,0);
+
+		if(n % 40 === 7){
+			let altVertices = generate_big_square2(n);
+			if(polygon_area(altVertices) > polygon_area(vertices)){
+				return altVertices
+			}
+		}
 
 		return vertices
 	}
