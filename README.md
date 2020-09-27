@@ -12,3 +12,5 @@ Solutions are proven to exist for all n >= 7, where 4 | n or 4 | n + 1
 This repository contains a simple viewer for the best known results for small values of n.
 
 Improvements for these n-gons would be very much welcome.
+
+[View online](https://hohmiyazawa.github.io/n-gon-solution-viewer/viewer.html)
