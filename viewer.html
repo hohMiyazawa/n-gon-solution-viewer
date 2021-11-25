@@ -264,6 +264,9 @@ function lower_bound(n){
 }
 
 function upper_bound(n){
+	if(n === 12){
+		return 474//can't beat a regular 12-gon
+	}
 	return Math.floor(Math.pow(n*(n+1)/2,2)/(4*Math.PI))
 }
 
