@@ -264,10 +264,8 @@ function lower_bound(n){
 }
 
 function upper_bound(n){
-	if(n === 12){
-		return 474//can't beat a regular 12-gon
-	}
-	return Math.floor(Math.pow(n*(n+1)/2,2)/(4*Math.PI))
+	return Math.floor(n/Math.tan(Math.PI/n)*Math.pow((n+1)/4,2))
+	//return Math.floor(Math.pow(n*(n+1)/2,2)/(4*Math.PI))
 }
 
 function polygon_area(vertices){
@@ -1208,7 +1206,7 @@ Proven optimal
 			else{
 				largestComment.innerText = `
 Area = ${solutions[input.value].maximum}
-Upper bound < ${upper_bound(parseInt(input.value))}
+Upper bound <= ${upper_bound(parseInt(input.value))}
 `
 			}
 		}
@@ -1217,7 +1215,7 @@ Upper bound < ${upper_bound(parseInt(input.value))}
 			draw_n_gon(generatedSolution,largest_canvas);
 			largestComment.innerText = `
 Area = ${polygon_area(generatedSolution)}
-Upper bound < ${upper_bound(parseInt(input.value))}
+Upper bound <= ${upper_bound(parseInt(input.value))}
 `
 		}
 	}
@@ -1238,7 +1236,7 @@ Lower bound >= ${lower_bound(parseInt(input.value))}
 			draw_n_gon(generatedSolution2,largest_canvas);
 			largestComment.innerText = `
 Area = ${polygon_area(generatedSolution2)}
-Upper bound < ${upper_bound(parseInt(input.value))}
+Upper bound <= ${upper_bound(parseInt(input.value))}
 `
 		}
 		else{
